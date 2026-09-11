@@ -14,6 +14,17 @@
     <name>OneCX AI Provider Backend Service</name>
     <version>999-SNAPSHOT</version>
     <packaging>quarkus</packaging>
+    <properties>
+        <!--
+            Pinned version of the onecx-ai-provider-runtime release whose OpenAPI contract is
+            used to generate the runtime client (gen.org.tkit.onecx.ai.provider.runtime.client).
+            The contract is consumed as an immutable GitHub release asset
+            (onecx-ai-provider-runtime-<tag>-runtime-contract.yaml) — never from a moving branch.
+            TODO(#593): v1.0.0 is a placeholder default until the first runtime release exists;
+            update this to the actual released runtime tag once #588 is released.
+        -->
+        <onecx-ai-provider-runtime.contract-version>v1.0.0</onecx-ai-provider-runtime.contract-version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.tkit.onecx.quarkus</groupId>
@@ -236,14 +247,20 @@
             <artifactId>download-maven-plugin</artifactId>
             <executions>
             <execution>
-                <id>onecx-ai-runtime</id>
+                <id>onecx-ai-runtime-contract</id>
                 <phase>generate-resources</phase>
                 <goals>
                     <goal>wget</goal>
                 </goals>
                 <configuration>
+                    <!--
+                        Pinned to the released runtime contract asset (see the
+                        onecx-ai-provider-runtime.contract-version property above). The file name
+                        onecx-ai-runtime.yaml must match the Quarkus OpenAPI Generator spec key
+                        (onecx_ai_runtime_yaml) in application.properties.
+                    -->
                     <url>
-                        https://raw.githubusercontent.com/onecx/onecx-ai-provider-runtime/refs/heads/main/src/main/openapi/openapi-runtime.yaml
+                        https://github.com/onecx/onecx-ai-provider-runtime/releases/download/${onecx-ai-provider-runtime.contract-version}/onecx-ai-provider-runtime-${onecx-ai-provider-runtime.contract-version}-runtime-contract.yaml
                     </url>
                     <outputDirectory>target/tmp/openapi</outputDirectory>
                     <outputFileName>onecx-ai-runtime.yaml</outputFileName>
