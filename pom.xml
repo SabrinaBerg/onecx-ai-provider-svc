@@ -15,15 +15,7 @@
     <version>999-SNAPSHOT</version>
     <packaging>quarkus</packaging>
     <properties>
-        <!--
-            Pinned version of the onecx-ai-provider-runtime release whose OpenAPI contract is
-            used to generate the runtime client (gen.org.tkit.onecx.ai.provider.runtime.client).
-            The contract is consumed as an immutable GitHub release asset
-            (onecx-ai-provider-runtime-<tag>-runtime-contract.yaml) — never from a moving branch.
-            TODO(#593): v1.0.0 is a placeholder default until the first runtime release exists;
-            update this to the actual released runtime tag once #588 is released.
-        -->
-        <onecx-ai-provider-runtime.contract-version>v1.0.0</onecx-ai-provider-runtime.contract-version>
+        <onecx-ai-provider-runtime.contract-version>0.1.0</onecx-ai-provider-runtime.contract-version>
     </properties>
     <dependencies>
         <dependency>
