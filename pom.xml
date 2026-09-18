@@ -245,12 +245,6 @@
                     <goal>wget</goal>
                 </goals>
                 <configuration>
-                    <!--
-                        Pinned to the released runtime contract asset (see the
-                        onecx-ai-provider-runtime.contract-version property above). The file name
-                        onecx-ai-runtime.yaml must match the Quarkus OpenAPI Generator spec key
-                        (onecx_ai_runtime_yaml) in application.properties.
-                    -->
                     <url>
                         https://github.com/onecx/onecx-ai-provider-runtime/releases/download/${onecx-ai-provider-runtime.contract-version}/onecx-ai-provider-runtime-${onecx-ai-provider-runtime.contract-version}-runtime-contract.yaml
                     </url>
